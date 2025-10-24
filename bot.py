@@ -41,15 +41,8 @@ TOPICS_TEXT = {
     )
 }
 
-CHANNELS_TEXT = (
-    "Here are some helpful, official channels for learning:\n\n"
-    "- Coindesk: t.me/coindesk\n"
-    "- CoinTelegraph: t.me/cointelegraph\n"
-    "- Decrypt: t.me/decryptmedia"
-)
-
 SUPPORT_TEXT = (
-    "If you need help or have a question, please contact our admin: @YourSupportUsername\n\n"
+    "If you need help or have a question, please contact our admin: t.me/Logan207\n\n"
     "Note: Admin will NEVER ask you for money, private keys, or passwords."
 )
 
@@ -98,9 +91,26 @@ async def main_menu_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) 
             reply_markup=get_topics_menu_keyboard()
         )
         return TOPIC_MENU
+    
+    # --- THIS BLOCK IS UPDATED ---
     elif text == "Helpful Channels":
-        await update.message.reply_text(CHANNELS_TEXT)
+        # The direct image link is now added
+        photo_url = "https://i.postimg.cc/mD8c5yB4/image.png"
+        
+        try:
+            # Try to send the photo with the caption
+            await update.message.reply_photo(
+                photo=photo_url,
+                caption="Coming soon"
+            )
+        except Exception as e:
+            # If the link is bad or broken, send a text message instead
+            logger.error(f"Error sending photo. Link: {photo_url}, Error: {e}")
+            await update.message.reply_text("Coming soon")
+            
         return MAIN_MENU
+    # --- END OF UPDATE ---
+
     elif text == "Contact Support":
         await update.message.reply_text(SUPPORT_TEXT)
         return MAIN_MENU
@@ -182,4 +192,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
