@@ -41,6 +41,7 @@ TOPICS_TEXT = {
     )
 }
 
+# Support contact link is updated here
 SUPPORT_TEXT = (
     "If you need help or have a question, please contact our admin: t.me/Logan207\n\n"
     "Note: Admin will NEVER ask you for money, private keys, or passwords."
@@ -94,11 +95,11 @@ async def main_menu_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     
     # --- THIS BLOCK IS UPDATED ---
     elif text == "Helpful Channels":
-        # The direct image link is now added
+        # The direct image link from postimg is here
         photo_url = "https://i.postimg.cc/mD8c5yB4/image.png"
         
         try:
-            # Try to send the photo with the caption
+            # Try to send the photo with the caption "Coming soon"
             await update.message.reply_photo(
                 photo=photo_url,
                 caption="Coming soon"
@@ -111,9 +112,13 @@ async def main_menu_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         return MAIN_MENU
     # --- END OF UPDATE ---
 
+    # --- THIS BLOCK IS UPDATED ---
     elif text == "Contact Support":
+        # The support text with your username is sent here
         await update.message.reply_text(SUPPORT_TEXT)
         return MAIN_MENU
+    # --- END OF UPDATE ---
+
     else:
         await update.message.reply_text(
             "Sorry, I didn't understand that. Please use the buttons.",
